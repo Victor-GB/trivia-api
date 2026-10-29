@@ -1,0 +1,72 @@
+[tool.python-bootstrap]
+runtime-requirements = "backend/requirements.txt"
+runtime-requirements-required = true
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+force-exclude = true
+
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "D"]
+ignore = ["E501"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "pep257"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+
+[tool.mypy]
+python_version = "3.12"
+files = ["backend"]
+exclude = ['^tmp/']
+check_untyped_defs = true
+disallow_untyped_defs = true
+no_implicit_optional = true
+warn_return_any = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unused_configs = true
+show_error_codes = true
+pretty = true
+
+
+[tool.pytest.ini_options]
+minversion = "9.1"
+testpaths = ["backend"]
+pythonpath = ["backend"]
+addopts = [
+    "--strict-config",
+    "--strict-markers",
+    "--ignore=tmp",
+    "--cov=backend",
+    "--cov-branch",
+    "--cov-report=term-missing",
+]
+
+[tool.coverage.run]
+omit=[
+    "**/test_*.py",
+    "**/*_test.py",
+    ".venv/*",
+    "tmp/*",
+]
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+
+[tool.rumdl]
+respect-gitignore = true
+
+[tool.rumdl.MD013]
+line-length = 88
+reflow = true
+code-blocks = false
+tables = false
+
+[tool.rumdl.MD007]
+indent = 4
