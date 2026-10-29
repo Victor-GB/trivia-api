@@ -15,3 +15,29 @@ env/
 frontend/node_modules/
 
 .env
+
+
+# Python development tooling
+*.py[cod]
+*$py.class
+.venv/
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+.mypy_cache/
+.ruff_cache/
+.rumdl_cache/
+
+# Packaging
+build/
+dist/
+*.egg-info/
+
+# Local configuration and evidence
+.env.*
+!.env.example
+.idea/
+*.log
+/tmp/

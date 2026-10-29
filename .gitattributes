@@ -1,0 +1,11 @@
+# Detect text files and use LF line endings
+* text=auto eol=lf
+
+# Documents and images must not undergo text conversion
+*.pdf binary
+*.docx binary
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
+*.zip binary

@@ -1,0 +1,48 @@
+minimum_pre_commit_version: "4.6.2"
+default_install_hook_types: [pre-commit]
+default_stages: [pre-commit]
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-ast
+      - id: check-case-conflict
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-toml
+      - id: check-yaml
+      - id: debug-statements
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: no-commit-to-branch
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.0
+    hooks:
+      - id: ruff-check
+        args: [--select, "E9,F63,F7,F82"]
+      - id: ruff-format
+        args: [--check]
+  - repo: local
+    hooks:
+      - id: local-agent-instructions
+        name: root AGENTS.md remains local
+        entry: bash scripts/check-local-agents.sh
+        language: system
+        pass_filenames: false
+        always_run: true
+      - id: markdown-check
+        name: Markdown checks
+        entry: .venv/bin/rumdl check
+        language: system
+        types: [markdown]
+      - id: full-quality-check
+        name: full quality check
+        entry: bash scripts/check.sh full
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-push]
